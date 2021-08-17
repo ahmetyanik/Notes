@@ -1,0 +1,3 @@
+[submodule "DCI"]
+	path = DCI
+	url = https://github.com/TutorAhmet/itmentalisten.git
