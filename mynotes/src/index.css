@@ -31,5 +31,27 @@ code {
 }
 
 .notes{
-  width: 90%;
+}
+
+.notes>div>div{
+
+  width: 80vw;
+  margin-top: 5px;
+  background-color: white;
+  opacity: 0.6;
+  font-weight: bold;
+  color: #000000;
+  font-family: 'Satisfy', cursive;
+  font-size: 2em;
+  border-radius: 5px;
+    
+}
+
+.notes>div>div>span{
+  padding-left: 10px;
+}
+
+.icons{
+  font-size: 1.5em;
+  padding-left: 10px;
 }
