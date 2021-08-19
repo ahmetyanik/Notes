@@ -24,14 +24,12 @@ code {
   font-family: 'Satisfy', cursive;
 }
 
-/* NOTESSTICK PAGE */
-
-.notesStick{
+.top-notes{
   display: flex;
   justify-content: center;
+  margin-top: 10%;
 }
 
-.notesStick-note{
-  width: 80vw;
-  padding: 10px 0;
+.notes{
+  width: 90%;
 }

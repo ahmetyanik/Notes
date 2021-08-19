@@ -5,65 +5,33 @@ import NotesStick from "./NoteStick";
 
 function MainPage() {
 
-    const [notes,setNotes]=useState({
+    const [notes,setNotes]=useState([]);
 
-        id:"",
-        note:""
-
-    });
-
-    function getNotes(){
-
-        axios.get("http://localhost:3000/api/notes.json").then(function(datas){
-            setNotes(datas.data);
-        });
-    }
+   
 
     console.log(notes);
 
 
-    function ekle(e){
+    function addData(e){
 
-        var input = document.getElementById("input").value;
+        var newData = document.getElementById("input").value;
 
-        setNotes()
+        setNotes(function(oldDatas){
+          return [...oldDatas,newData];
+        });
 
-    }
-
-
-    function addNote(e){
-
-        var input = document.getElementById("input").value;
-        var comingDatas = input;
-
-        setNotes(function(previousDatas){
-
-            console.log(previousDatas);
-            
-            return{
-                ...previousDatas,
-                [e.target.note]:comingDatas,
-                [e.target.id]:notes.length+1
-            }
-        })
-
-        console.log(notes);
 
         e.preventDefault();
+
     }
-
-    useEffect(getNotes,[]);
-
-
-
-
 
   return (
     <div
       style={{
         backgroundImage: `url(${background})`,
         backgroundRepeat: "no-repeat",
-        height: "100vh",
+        minHeight:"100vh",
+        minWidth:"100vw",
         backgroundSize: "cover",
       }}
     >
@@ -82,15 +50,23 @@ function MainPage() {
             aria-label="Search"
             name="note"
           />
-          <button onClick={addNote} className="btn btn-outline-success" type="submit">
+          <button onClick={addData} className="btn btn-outline-success" type="submit">
             Add
           </button>
         </form>
       </div>
 
-   
+      <div className="top-notes">
+      
+      <div className="notes">
+        {notes.map(function(note,id){
+          return(
+            <div>{id+1}-{note}.</div>
+          )
+        })}  
+      </div>
 
-     
+      </div>     
 
     </div>
   );
