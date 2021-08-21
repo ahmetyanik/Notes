@@ -21,7 +21,7 @@ code {
 }
 
 .title{
-  font-family: 'Satisfy', cursive;
+  font-family: 'Satisfy', cursive !important;
 }
 
 .top-notes{

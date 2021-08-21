@@ -3,13 +3,25 @@ import React, { useEffect, useState } from "react";
 
 function NotesStick(notesfromMain) {
 
-    const [notes,setNotes]=useState([]);
 
- 
+  const[done,setDone] = useState(false);
+
+  function doIt(){
+
+    setDone(true);
+    notesfromMain.click();
+  }
+
+
   return (
-    <div className="notesStick">
-      <div className="notesStick-note">
-        {notesfromMain.id}-{notesfromMain.not} <button onClick>Sil</button>
+    <div onClick={doIt}>
+      <div  className="d-flex align-items-center justify-content-between px-3">
+        <div >
+          <span id={notesfromMain.id}>
+            {notesfromMain.id + 1}-{notesfromMain.note}
+          </span>
+        </div>
+        <i  id={notesfromMain.id} className="fas fa-trash icons"></i>
       </div>
     </div>
   );
