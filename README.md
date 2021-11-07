@@ -13,7 +13,7 @@ This project is made with react. The project simply demonstrates component usage
 
 ## Preview
 
-![alt text](Notes/src/images/notes.gif)
+![alt text](src/images/notes.gif)
 
 
 ## Technologies
