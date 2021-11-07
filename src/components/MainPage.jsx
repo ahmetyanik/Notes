@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import background from "../images/cool-background.png";
 import NotesStick from "./NoteStick";
 
-function MainPage({addData, deleteData, notes}) {
-
+function MainPage({ addData, deleteData, notes }) {
   return (
     <div
       style={{
@@ -26,6 +25,7 @@ function MainPage({addData, deleteData, notes}) {
               placeholder="Add Notes"
               aria-label="Search"
               name="note"
+              autoComplete="off"
             />
             <button
               onClick={addData}
