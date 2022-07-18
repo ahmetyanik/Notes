@@ -1,58 +1,86 @@
-/* Aufgabe 3: (Sachaufgabe)
-Teil 1:
-Du bist für die Implementierung eines Warenkorb-Systems zuständig. Ziel ist es dem Nutzer des Onlineshops das teuerste Produkt, das günstigste Produkt und die Gesamtkosten für alle Produkte anzuzeigen.
-Schreibe einen Algorithmus der für folgenden Input:
-const cost = [2.39, 13.99, 4.19, 59.99, 1.99];
-const productNames = ["Zahncreme","Tofu", "Müsli", "Toaster", "Kaugummi"];
-Folgenden Output auf der Konsole anzeigt:
-"Das teuerste Produkt ist: Toaster"
-"Das billigste Produkt ist: Kaugummi"
-"Alle 5 Produkte zusammen kosten: 82,55€"
-Info: Runde alle Preise auf zwei Nachkommastellen.
+/*
+- Number must be 16 digits, all of them must be numbers
+- You must have at least two different digits represented (all of the digits cannot be the same)
+- The final digit must be even
+- The sum of all the digits must be greater than 16
+*/
 
-
-Bonus:
-Jetzt besteht der input aus drei Arrays. Zusätzlich zu den Preisen und den Produktnamen kommt jetzt noch ein Array amounts mit der Anzahl der jeweiligen Produkte.
-const amounts = [4, 1, 2, 1, 3];
-Die Zahncreme wird also 4 mal gekauft. Der Tofu 1 mal und so weiter.
-Passe den Output von oben an sodass die Gesamtanzahl an Produkten und der Gesamtpreis stimmen.  */
-
-const cost = [2.39, 13.99, 4.19, 59.99, 1.99];
-const productNames = ["Zahncreme", "Tofu", "Müsli", "Toaster", "Kaugummi"];
-
-const yeniStringMax = Math.max(...cost);
-
-console.log(`Das teuerste Produkt ist: ${yeniStringMax} `);
-console.log(
-  `Das teuerste Produkt ist: ${productNames[cost.indexOf(yeniStringMax)]} `
-);
-
-const yeniStringMin = Math.min(...cost);
-
-console.log(`Das billigste Produkt ist: ${yeniStringMin} `);
-console.log(
-  `Das billigste Produkt ist: ${productNames[cost.indexOf(yeniStringMin)]} `
-);
-
-let totalPrice = 0;
-
-for (let i = 0; i < cost.length; i++) {
-  totalPrice += cost[i];
+function validateCreditCard(creditCardNum) {
+  if (
+    has16Digits(creditCardNum) &&
+    hasDifferentDigits(creditCardNum) &&
+    hasEvenLastDigit(creditCardNum) &&
+    hasSumGreaterThan16(creditCardNum)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
-console.log(`Alle 5 Produkte zusammen kosten: ${totalPrice.toFixed(2)}`);
+//- Number must be 16 digits, all of them must be numbers
 
-/*************************Bonus********************************/
+function has16Digits(creditCardNumber) {
+  // //const trimmedNumber = creditCardNum.split("-").join("");
+  const trimmedNumber = creditCardNumber.replaceAll("-", "");
 
-const amounts = [4, 1, 2, 1, 3];
+  const isTrimmedANumber = isNaN(trimmedNumber);
 
-let totalAmount = 0;
-let totalPriceByAmount = 0;
-
-for (let i = 0; i < cost.length; i++) {
-  totalAmount += amounts[i];
-  totalPriceByAmount += cost[i] * amounts[i];
+  return trimmedNumber.length === 16 && isTrimmedANumber === false
+    ? true
+    : false;
 }
 
-console.log("totalAmount:", totalAmount);
-console.log("totalPriceByAmount:", totalPriceByAmount);
+// //- You must have at least two different digits represented (all of the digits cannot be the same)
+function hasDifferentDigits(creditCardNumber) {
+  let num = 0;
+
+  const trimmedNumber = creditCardNumber.split("-").join("");
+
+  for (let i = 0; i < trimmedNumber.length; i++) {
+    if (trimmedNumber[0] != trimmedNumber[i]) {
+      console.log(creditCardNumber[i]);
+      num++;
+      break;
+    }
+  }
+
+  console.log(num);
+
+  return num > 0 ? true : false;
+}
+// //- The final digit must be even
+function hasEvenLastDigit(creditCardNumber) {
+  console.log("son:", creditCardNumber.substring(creditCardNumber.length - 1));
+
+  return parseInt(creditCardNumber.substring(creditCardNumber.length - 1)) %
+    2 ===
+    0
+    ? true
+    : false;
+}
+// //- The sum of all the digits must be greater than 16
+function hasSumGreaterThan16(creditCardNumber) {
+  const trimmedNumber = creditCardNumber.split("-").join("");
+
+  console.log(trimmedNumber);
+
+  let total = 0;
+
+  for (let i = 0; i < trimmedNumber.length; i++) {
+    total += parseInt(trimmedNumber[i]);
+  }
+
+  return total > 16 ? true : false;
+}
+
+console.log("Genel Kontrol");
+
+console.log(validateCreditCard("0000-0000-0000-0893"));
+
+// /**** tests *****/
+// console.log(validateCreditCard('9999-7777-8888-0000')); //{ valid: true, number: '9999-7777-8888-0000' }
+// console.log(validateCreditCard('66666666666666665')); //{ valid: true, number: '6666-6666-6666-1666' }
+// console.log(validateCreditCard('a923-3211-9c01-1112')); //{ valid: false,number: 'a923-3211-9c01-1112',error: '_invalid characters_' }
+// console.log(validateCreditCard('4444-4444-4444-4444')); //{ valid: false,number: '4444-4444-4444-4444',error: '_only one type of number_' }
+// console.log(validateCreditCard('1211-1111-1111-1112')); //{ valid: true, number: '1211-1111-1111-1112' }
