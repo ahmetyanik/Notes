@@ -3,6 +3,7 @@ import './App.css';
 import Classcomponent from './components/Classcomponent';
 import ComponentWillUnmount from './components/ComponentWillUnmount';
 import Functionalcomponent from './components/Functionalcomponent';
+import Holidays from './components/Holidays';
 
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
 
     {isVisible &&  <ComponentWillUnmount/>}
       <button onClick={() => setIsVisible(!isVisible)}>Toggle</button>
+
+      <Holidays/>
     </div>
   );
 }

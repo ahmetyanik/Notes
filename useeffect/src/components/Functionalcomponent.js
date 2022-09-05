@@ -13,6 +13,8 @@ function Functionalcomponent() {
     etkilenenEleman.innerText = "etkilendim " + state;
   }, [state]);
 
+  console.log(state);
+
   return (
     <div style={{ background: "blue", color: "white" }}>
       <h3>State:{state}</h3>
